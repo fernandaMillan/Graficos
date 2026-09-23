@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\furci\\Desktop\\Graficos\\ProyectoBase\\BaseP2\\BaseP2.csproj": {}
+    "C:\\Users\\furci\\Desktop\\Graficos\\Colores\\colores.csproj": {}
   },
   "projects": {
-    "C:\\Users\\furci\\Desktop\\Graficos\\ProyectoBase\\BaseP2\\BaseP2.csproj": {
+    "C:\\Users\\furci\\Desktop\\Graficos\\Colores\\colores.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\furci\\Desktop\\Graficos\\ProyectoBase\\BaseP2\\BaseP2.csproj",
-        "projectName": "BaseP2",
-        "projectPath": "C:\\Users\\furci\\Desktop\\Graficos\\ProyectoBase\\BaseP2\\BaseP2.csproj",
+        "projectUniqueName": "C:\\Users\\furci\\Desktop\\Graficos\\Colores\\colores.csproj",
+        "projectName": "colores",
+        "projectPath": "C:\\Users\\furci\\Desktop\\Graficos\\Colores\\colores.csproj",
         "packagesPath": "C:\\Users\\furci\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\furci\\Desktop\\Graficos\\ProyectoBase\\BaseP2\\obj\\",
+        "outputPath": "C:\\Users\\furci\\Desktop\\Graficos\\Colores\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "D:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -54,7 +54,7 @@
           "dependencies": {
             "Raylib-cs": {
               "target": "Package",
-              "version": "[8.0.0, )"
+              "version": "[8.1.0, )"
             }
           },
           "imports": [

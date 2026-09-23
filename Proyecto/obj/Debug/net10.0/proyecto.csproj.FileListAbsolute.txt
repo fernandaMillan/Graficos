@@ -1,0 +1,15 @@
+C:\Users\furci\Desktop\Graficos\proyecto\bin\Debug\net10.0\proyecto.exe
+C:\Users\furci\Desktop\Graficos\proyecto\bin\Debug\net10.0\proyecto.deps.json
+C:\Users\furci\Desktop\Graficos\proyecto\bin\Debug\net10.0\proyecto.runtimeconfig.json
+C:\Users\furci\Desktop\Graficos\proyecto\bin\Debug\net10.0\proyecto.dll
+C:\Users\furci\Desktop\Graficos\proyecto\bin\Debug\net10.0\proyecto.pdb
+C:\Users\furci\Desktop\Graficos\proyecto\obj\Debug\net10.0\proyecto.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\furci\Desktop\Graficos\proyecto\obj\Debug\net10.0\proyecto.AssemblyInfoInputs.cache
+C:\Users\furci\Desktop\Graficos\proyecto\obj\Debug\net10.0\proyecto.AssemblyInfo.cs
+C:\Users\furci\Desktop\Graficos\proyecto\obj\Debug\net10.0\proyecto.csproj.CoreCompileInputs.cache
+C:\Users\furci\Desktop\Graficos\proyecto\obj\Debug\net10.0\proyecto.sourcelink.json
+C:\Users\furci\Desktop\Graficos\proyecto\obj\Debug\net10.0\proyecto.dll
+C:\Users\furci\Desktop\Graficos\proyecto\obj\Debug\net10.0\refint\proyecto.dll
+C:\Users\furci\Desktop\Graficos\proyecto\obj\Debug\net10.0\proyecto.pdb
+C:\Users\furci\Desktop\Graficos\proyecto\obj\Debug\net10.0\proyecto.genruntimeconfig.cache
+C:\Users\furci\Desktop\Graficos\proyecto\obj\Debug\net10.0\ref\proyecto.dll
