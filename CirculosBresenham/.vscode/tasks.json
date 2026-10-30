@@ -1,0 +1,30 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Círculos: restaurar",
+      "type": "process",
+      "command": "dotnet",
+      "args": ["restore"],
+      "problemMatcher": "$msCompile"
+    },
+    {
+      "label": "Círculos: compilar",
+      "type": "process",
+      "command": "dotnet",
+      "args": ["build"],
+      "problemMatcher": "$msCompile",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    },
+    {
+      "label": "Círculos: ejecutar",
+      "type": "process",
+      "command": "dotnet",
+      "args": ["run"],
+      "problemMatcher": []
+    }
+  ]
+}

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\furci\\Desktop\\Graficos\\recursion\\recursion.csproj": {}
+    "C:\\Users\\furci\\Desktop\\Graficos\\Recursion\\recursion.csproj": {}
   },
   "projects": {
-    "C:\\Users\\furci\\Desktop\\Graficos\\recursion\\recursion.csproj": {
+    "C:\\Users\\furci\\Desktop\\Graficos\\Recursion\\recursion.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\furci\\Desktop\\Graficos\\recursion\\recursion.csproj",
+        "projectUniqueName": "C:\\Users\\furci\\Desktop\\Graficos\\Recursion\\recursion.csproj",
         "projectName": "recursion",
-        "projectPath": "C:\\Users\\furci\\Desktop\\Graficos\\recursion\\recursion.csproj",
+        "projectPath": "C:\\Users\\furci\\Desktop\\Graficos\\Recursion\\recursion.csproj",
         "packagesPath": "C:\\Users\\furci\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\furci\\Desktop\\Graficos\\recursion\\obj\\",
+        "outputPath": "C:\\Users\\furci\\Desktop\\Graficos\\Recursion\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "D:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
