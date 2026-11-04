@@ -1,0 +1,33 @@
+DEMO DOCENTE | PRACTICA 1: VECTORES Y MOVIMIENTO
+
+Este es un proyecto independiente en C# y Raylib-cs para proyectar.
+No necesita API ni archivos JSON. No reemplaza el laboratorio base del alumnado.
+Program.cs contiene el ejemplo completo, incluida la función CalcularPaso.
+
+Cómo ejecutarlo
+1. Descomprime el ZIP y abre DemoVectores en Visual Studio Code.
+2. Necesitas el SDK de .NET 8. Desde esa carpeta ejecuta:
+   dotnet restore
+   dotnet run
+   La primera restauración requiere acceso a NuGet.
+3. Para comprobar cuatro casos en consola, sin abrir ventana:
+   dotnet run -- --probar
+
+Qué proyectar en 8–10 minutos
+1. La ventana empieza en pausa. Pide al grupo que prediga el primer paso.
+2. Pulsa ESPACIO: aplica exactamente 0.5 s, aunque la pantalla se refresque
+   más rápido. El caso 1 llega a (2.6, 2.8) en el primer paso.
+3. Compara con 2 (horizontal): el primer paso llega a (3, 2).
+   La longitud del paso es 1 en ambos casos. Solo cambia la dirección.
+4. Pulsa 3 y luego ESPACIO: P y Q coinciden, así que no se normaliza.
+5. Pulsa 4 y luego ESPACIO: el paso nominal es 1, pero solo se aplica 0.1.
+6. Regresa a 1 y pulsa ENTER para animar con el tiempo real de cada cuadro.
+
+Controles
+1 diagonal | 2 horizontal | 3 misma posición | 4 llegada sin pasarse
+ESPACIO aplica un paso de 0.5 s y deja la animación en pausa.
+ENTER alterna animación y pausa. La animación se detiene al llegar.
+Flechas arriba/abajo cambian la rapidez del próximo paso (1 a 5 u/s).
+R reinicia el caso actual y devuelve la rapidez a 2 u/s. ESC cierra.
+El panel «Último paso aplicado» conserva los valores de ese cálculo;
+si cambias la rapidez, la fila superior muestra el nuevo valor.
