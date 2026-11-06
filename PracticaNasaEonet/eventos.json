@@ -1,0 +1,18 @@
+{
+  "events": [
+    {
+      "title": "Simulado A",
+      "closed": null,
+      "geometry": [
+        { "type": "Point", "date": "2025-01-01T00:00:00Z", "coordinates": [-90, 45] }
+      ]
+    },
+    {
+      "title": "Simulado B",
+      "closed": "2025-01-03T00:00:00Z",
+      "geometry": [
+        { "type": "Point", "date": "2025-01-02T00:00:00Z", "coordinates": [60, -30] }
+      ]
+    }
+  ]
+}

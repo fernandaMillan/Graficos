@@ -1,0 +1,14 @@
+{
+  "version": 2,
+  "dgSpecHash": "/K+AMHmAHvQ=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\furci\\Desktop\\Graficos\\practicanasaeonet\\PracticaNasaEonet.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\furci\\.nuget\\packages\\raylib-cs\\8.0.0\\raylib-cs.8.0.0.nupkg.sha512",
+    "C:\\Users\\furci\\.nuget\\packages\\microsoft.netcore.app.ref\\8.0.27\\microsoft.netcore.app.ref.8.0.27.nupkg.sha512",
+    "C:\\Users\\furci\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\8.0.27\\microsoft.windowsdesktop.app.ref.8.0.27.nupkg.sha512",
+    "C:\\Users\\furci\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\8.0.27\\microsoft.aspnetcore.app.ref.8.0.27.nupkg.sha512",
+    "C:\\Users\\furci\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\8.0.27\\microsoft.netcore.app.host.win-x64.8.0.27.nupkg.sha512"
+  ],
+  "logs": []
+}
