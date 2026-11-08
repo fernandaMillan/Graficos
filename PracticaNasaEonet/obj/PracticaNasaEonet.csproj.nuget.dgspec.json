@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\furci\\Desktop\\Graficos\\practicanasaeonet\\PracticaNasaEonet.csproj": {}
+    "C:\\Users\\furci\\Desktop\\Graficos\\PracticaNasaEonet\\PracticaNasaEonet.csproj": {}
   },
   "projects": {
-    "C:\\Users\\furci\\Desktop\\Graficos\\practicanasaeonet\\PracticaNasaEonet.csproj": {
+    "C:\\Users\\furci\\Desktop\\Graficos\\PracticaNasaEonet\\PracticaNasaEonet.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\furci\\Desktop\\Graficos\\practicanasaeonet\\PracticaNasaEonet.csproj",
+        "projectUniqueName": "C:\\Users\\furci\\Desktop\\Graficos\\PracticaNasaEonet\\PracticaNasaEonet.csproj",
         "projectName": "PracticaNasaEonet",
-        "projectPath": "C:\\Users\\furci\\Desktop\\Graficos\\practicanasaeonet\\PracticaNasaEonet.csproj",
+        "projectPath": "C:\\Users\\furci\\Desktop\\Graficos\\PracticaNasaEonet\\PracticaNasaEonet.csproj",
         "packagesPath": "C:\\Users\\furci\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\furci\\Desktop\\Graficos\\practicanasaeonet\\obj\\",
+        "outputPath": "C:\\Users\\furci\\Desktop\\Graficos\\PracticaNasaEonet\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "D:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
