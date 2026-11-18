@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Práctica 3 · Control con la mano</title>
+<style>
+:root{color-scheme:light}
+body{font:1.08rem system-ui,sans-serif;max-width:42rem;margin:3rem auto;padding:0 1.4rem;color:#173045;background:#f8fafb}
+h1{font-size:2rem;line-height:1.15}
+p{line-height:1.55}
+.kicker{font-size:.82rem;font-weight:700;letter-spacing:.08em;color:#206663}
+button{font:inherit;border:1px solid #173045;border-radius:.4rem;padding:.55rem .8rem;margin-right:.4rem;background:white;color:#173045}
+button:not(:disabled){cursor:pointer}
+button:disabled{opacity:.5}
+#estado{font-weight:700;min-height:3.5rem;border-top:1px solid #ced8dc;padding-top:.75rem}
+.nota{font-size:.96rem;color:#3e5767}
+.fuente{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none}
+</style>
+</head>
+<body>
+<p class="kicker">GRÁFICOS POR COMPUTADORA / PRÁCTICA 3</p>
+<h1>Palma abierta para girar</h1>
+<p>Coloca una mano frente a la cámara con la palma abierta. Mantén esta página visible junto a Raylib. Si retiras la mano o cambias de pose, la figura conserva el ángulo que alcanzó.</p>
+<button id="activar" type="button">Activar cámara</button>
+<button id="detener" type="button" disabled>Detener cámara</button>
+<p id="estado" role="status" aria-live="polite">Cámara apagada.</p>
+<video id="video" class="fuente" autoplay playsinline muted aria-hidden="true"></video>
+<p class="nota">El programa solo usa la detección de gestos de la mano. No identifica rostros, no usa micrófono y no guarda ni envía video. El reconocimiento se ejecuta en este navegador y Raylib recibe únicamente «girar» o «detener».</p>
+<p class="nota">Se necesita internet para cargar MediaPipe y su modelo. La cámara se apaga al ocultar esta página. Si cierras el laboratorio o cambias de pestaña en Raylib, se apaga al perder la conexión local.</p>
+
+<script type="module">
+const activar = document.querySelector('#activar');
+const detener = document.querySelector('#detener');
+const estado = document.querySelector('#estado');
+const video = document.querySelector('#video');
+
+let detector, flujo, raf, solicitud;
+let sesion = 0, ultimoVideo = -1, ultimoEnvio = -Infinity;
+
+function mostrar(texto) {
+  if (estado.textContent !== texto) estado.textContent = texto;
+}
+
+function gestoValido(resultado) {
+  const clase = resultado.gestures?.[0]?.[0];
+  return clase?.categoryName === 'Open_Palm' && clase.score >= 0.65;
+}
+
+function emitir(girar, opciones = {}) {
+  return fetch('/gesto', {
+    method: 'POST',
+    headers: { 'Content-Type': 'text/plain' },
+    body: girar ? '1' : '0',
+    ...opciones
+  }).then(respuesta => {
+    if (!respuesta.ok) throw new Error('La aplicación devolvió ' + respuesta.status);
+  });
+}
+
+function apagar(texto, enviarCero = true) {
+  sesion++;
+  if (raf !== undefined) cancelAnimationFrame(raf);
+  raf = undefined;
+  solicitud?.abort();
+  solicitud = undefined;
+  const estabaActiva = Boolean(flujo);
+  flujo?.getTracks().forEach(pista => {
+    pista.onended = null;
+    pista.stop();
+  });
+  flujo = undefined;
+  video.srcObject = null;
+  activar.disabled = false;
+  detener.disabled = true;
+  if (estabaActiva && enviarCero) emitir(false, { keepalive: true }).catch(() => {});
+  mostrar(texto);
+}
+
+async function iniciar() {
+  const actual = ++sesion;
+  activar.disabled = true;
+  detener.disabled = false;
+  mostrar('Cargando el reconocimiento de la mano…');
+  try {
+    if (!detector) {
+      const { FilesetResolver, GestureRecognizer } = await import(
+        'https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.14/vision_bundle.mjs'
+      );
+      const archivos = await FilesetResolver.forVisionTasks(
+        'https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.14/wasm'
+      );
+      const nuevo = await GestureRecognizer.createFromOptions(archivos, {
+        baseOptions: {
+          modelAssetPath: 'https://storage.googleapis.com/mediapipe-models/gesture_recognizer/gesture_recognizer/float16/1/gesture_recognizer.task'
+        },
+        runningMode: 'VIDEO',
+        numHands: 1
+      });
+      if (actual !== sesion) { nuevo.close(); return; }
+      detector = nuevo;
+    }
+    mostrar('Acepta el permiso de la cámara.');
+    const captura = await navigator.mediaDevices.getUserMedia({
+      video: { width: { ideal: 640 }, height: { ideal: 480 } },
+      audio: false
+    });
+    if (actual !== sesion) { captura.getTracks().forEach(pista => pista.stop()); return; }
+    flujo = captura;
+    for (const pista of flujo.getTracks()) {
+      pista.onended = () => apagar('La cámara se desconectó.');
+    }
+    video.srcObject = flujo;
+    await video.play();
+    if (actual !== sesion) return;
+    ultimoVideo = -1;
+    ultimoEnvio = -Infinity;
+    mostrar('Buscando una mano…');
+    raf = requestAnimationFrame(t => procesar(t, actual));
+  } catch (e) {
+    if (actual === sesion)
+      apagar('No se pudo iniciar. Revisa permisos e internet. Detalle: ' + e.message);
+  }
+}
+
+function procesar(ahora, actual) {
+  if (actual !== sesion || !flujo) return;
+  try {
+    if (video.readyState >= 2 && video.currentTime !== ultimoVideo && ahora - ultimoEnvio >= 100 && !solicitud) {
+      ultimoVideo = video.currentTime;
+      ultimoEnvio = ahora;
+      const resultado = detector.recognizeForVideo(video, ahora);
+      const girar = gestoValido(resultado);
+      mostrar(girar ? 'Palma abierta: giro activado.'
+        : resultado.landmarks?.length ? 'Mano detectada, sin palma abierta: giro detenido.'
+        : 'No se detecta una mano: giro detenido.');
+      const control = new AbortController();
+      solicitud = control;
+      const limite = setTimeout(() => control.abort(), 700);
+      emitir(girar, { signal: control.signal }).catch(() => {
+        if (actual === sesion)
+          apagar('Se perdió la conexión con Raylib. La cámara se apagó.', false);
+      }).finally(() => {
+        clearTimeout(limite);
+        if (solicitud === control) solicitud = undefined;
+      });
+    }
+    raf = requestAnimationFrame(t => procesar(t, actual));
+  } catch (e) {
+    apagar('Error al reconocer la mano: ' + e.message);
+  }
+}
+
+activar.addEventListener('click', iniciar);
+detener.addEventListener('click', () => apagar('Cámara apagada.'));
+document.addEventListener('visibilitychange', () => {
+  if (document.hidden && activar.disabled)
+    apagar('Página oculta: cámara apagada. Pulsa Activar cámara para continuar.');
+});
+window.addEventListener('pagehide', () => apagar('Cámara apagada.'));
+</script>
+</body>
+</html>
