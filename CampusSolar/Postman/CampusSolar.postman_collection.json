@@ -1,0 +1,409 @@
+{
+  "info": {
+    "name": "Sistemas Vivos · Sombra en el campus",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://127.0.0.1:3000"
+    }
+  ],
+  "item": [
+    {
+      "name": "01 · Salud",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/health",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "health"
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));",
+              "pm.test(\"Contrato del caso\", () => {",
+              "  const j = pm.response.json();",
+              "  pm.expect(j.estado).to.eql(\"ok\");",
+              "});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "02 · Escenario",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/escenario",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "escenario"
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));",
+              "pm.test(\"Contrato del caso\", () => {",
+              "  const j = pm.response.json();",
+              "  pm.expect(j.horas).to.eql([8,10,12,14,16]);",
+              "  pm.expect(j.mesaXM).to.eql(4);",
+              "});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "03 · Caso de la hoja · 10 h",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/simular",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "simular"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"escenario\": \"explanada_mexicali\",\n  \"variables\": {\n    \"horaLocal\": 10,\n    \"nubosidad\": 25,\n    \"alturaParedM\": 5\n  }\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));",
+              "pm.test(\"Contrato del caso\", () => {",
+              "  const j = pm.response.json();",
+              "  pm.expect(j.resultado.longitudSombraM).to.eql(5);",
+              "  pm.expect(j.resultado.direccionSombra).to.eql(\"oeste\");",
+              "  pm.expect(j.resultado.mesaEnSombra).to.eql(true);",
+              "  pm.expect(j.visual.contrasteSombra).to.eql(0.75);",
+              "});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "04 · Mediodía",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/simular",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "simular"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"escenario\": \"explanada_mexicali\",\n  \"variables\": {\n    \"horaLocal\": 12,\n    \"nubosidad\": 25,\n    \"alturaParedM\": 5\n  }\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));",
+              "pm.test(\"Contrato del caso\", () => {",
+              "  const j = pm.response.json();",
+              "  pm.expect(j.resultado.longitudSombraM).to.be.closeTo(2.88675, 0.0001);",
+              "  pm.expect(j.resultado.mesaEnSombra).to.eql(false);",
+              "});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "05 · Cambiar solo la hora a 14",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/simular",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "simular"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"escenario\": \"explanada_mexicali\",\n  \"variables\": {\n    \"horaLocal\": 14,\n    \"nubosidad\": 25,\n    \"alturaParedM\": 5\n  }\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));",
+              "pm.test(\"Contrato del caso\", () => {",
+              "  const j = pm.response.json();",
+              "  pm.expect(j.resultado.direccionSombra).to.eql(\"este\");",
+              "  pm.expect(j.resultado.longitudSombraM).to.eql(5);",
+              "  pm.expect(j.resultado.mesaEnSombra).to.eql(false);",
+              "});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "06 · Más nubes",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/simular",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "simular"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"escenario\": \"explanada_mexicali\",\n  \"variables\": {\n    \"horaLocal\": 10,\n    \"nubosidad\": 80,\n    \"alturaParedM\": 5\n  }\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));",
+              "pm.test(\"Contrato del caso\", () => {",
+              "  const j = pm.response.json();",
+              "  pm.expect(j.visual.contrasteSombra).to.eql(0.2);",
+              "  pm.expect(j.resultado.longitudSombraM).to.eql(5);",
+              "  pm.expect(j.resultado.mesaEnSombra).to.eql(true);",
+              "});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "07 · Límite de 4 m",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/simular",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "simular"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"escenario\": \"explanada_mexicali\",\n  \"variables\": {\n    \"horaLocal\": 10,\n    \"nubosidad\": 25,\n    \"alturaParedM\": 4\n  }\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));",
+              "pm.test(\"Contrato del caso\", () => {",
+              "  const j = pm.response.json();",
+              "  pm.expect(j.resultado.mesaEnSombra).to.eql(true);",
+              "});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "08 · Error de rango",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/simular",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "simular"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"escenario\": \"explanada_mexicali\",\n  \"variables\": {\n    \"horaLocal\": 10,\n    \"nubosidad\": 120,\n    \"alturaParedM\": 5\n  }\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 400\", () => pm.response.to.have.status(400));",
+              "pm.test(\"Contrato del caso\", () => {",
+              "  const j = pm.response.json();",
+              "  pm.expect(j.error).to.include(\"nubosidad\");",
+              "});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "09 · Error de tipo",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/simular",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "simular"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"escenario\": \"explanada_mexicali\",\n  \"variables\": {\n    \"horaLocal\": \"10\",\n    \"nubosidad\": 25,\n    \"alturaParedM\": 5\n  }\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP 400\", () => pm.response.to.have.status(400));",
+              "pm.test(\"Contrato del caso\", () => {",
+              "  const j = pm.response.json();",
+              "  pm.expect(j.error).to.include(\"horaLocal\");",
+              "});"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

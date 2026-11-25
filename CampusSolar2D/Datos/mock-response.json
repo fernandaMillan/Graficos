@@ -1,0 +1,10 @@
+{
+  "estado": "ok",
+  "resultado": {
+    "elevacionSolGrados": 45,
+    "direccionSombra": "oeste",
+    "longitudSombraM": 5,
+    "mesaEnSombra": true
+  },
+  "visual": { "contrasteSombra": 0.75 }
+}

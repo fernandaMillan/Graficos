@@ -1,0 +1,8 @@
+{
+  "name": "campus-solar-aula",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": { "node": "22.x" },
+  "scripts": { "start": "node local.mjs", "test": "node --test pruebas.test.mjs" }
+}

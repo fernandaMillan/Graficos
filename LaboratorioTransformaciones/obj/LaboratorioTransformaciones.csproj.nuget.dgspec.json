@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\furci\\Desktop\\Graficos\\laboratoriotransformaciones\\LaboratorioTransformaciones.csproj": {}
+    "C:\\Users\\furci\\Desktop\\Graficos\\LaboratorioTransformaciones\\LaboratorioTransformaciones.csproj": {}
   },
   "projects": {
-    "C:\\Users\\furci\\Desktop\\Graficos\\laboratoriotransformaciones\\LaboratorioTransformaciones.csproj": {
+    "C:\\Users\\furci\\Desktop\\Graficos\\LaboratorioTransformaciones\\LaboratorioTransformaciones.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\furci\\Desktop\\Graficos\\laboratoriotransformaciones\\LaboratorioTransformaciones.csproj",
+        "projectUniqueName": "C:\\Users\\furci\\Desktop\\Graficos\\LaboratorioTransformaciones\\LaboratorioTransformaciones.csproj",
         "projectName": "LaboratorioTransformaciones",
-        "projectPath": "C:\\Users\\furci\\Desktop\\Graficos\\laboratoriotransformaciones\\LaboratorioTransformaciones.csproj",
+        "projectPath": "C:\\Users\\furci\\Desktop\\Graficos\\LaboratorioTransformaciones\\LaboratorioTransformaciones.csproj",
         "packagesPath": "C:\\Users\\furci\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\furci\\Desktop\\Graficos\\laboratoriotransformaciones\\obj\\",
+        "outputPath": "C:\\Users\\furci\\Desktop\\Graficos\\LaboratorioTransformaciones\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "D:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

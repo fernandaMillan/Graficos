@@ -1,0 +1,6 @@
+bin/
+obj/
+.vercel/
+node_modules/
+.vs/
+*.user
